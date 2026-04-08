@@ -125,7 +125,7 @@ int main() {
   float N_loc = glGetUniformLocation(shaderProgram, "N");
   float R_loc = glGetUniformLocation(shaderProgram, "R");
 
-  float N_sides = 1.0f;
+  float N_sides = 4.0f;
 
   // main loop
   int readIdx = 0;
@@ -149,7 +149,7 @@ int main() {
     glfwSwapBuffers(window);
     glfwPollEvents();
 
-    N_sides += 0.1f;
+    N_sides += 0.001f;
   }
 
   glDeleteShader(vertexShader);
