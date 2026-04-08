@@ -24,7 +24,7 @@ const char* vertexShaderSource =
 "   float angle = (float(target) * 2.0 * PI) / float(N);\n"
 "   vec2 vertexPos = vec2(cos(angle), sin(angle)) * 0.8;\n"
 "\n"
-"   outPos = pos + (vertexPos - pos) * R;\n"
+"   outPos = pos + ((vertexPos - pos) * R);\n"
 "   gl_Position = vec4(outPos, 0.0, 1.0);\n"
 "   gl_PointSize = 1.0;\n"
 " }\n\0";
@@ -125,6 +125,8 @@ int main() {
   float N_loc = glGetUniformLocation(shaderProgram, "N");
   float R_loc = glGetUniformLocation(shaderProgram, "R");
 
+  float N_sides = 1.0f;
+
   // main loop
   int readIdx = 0;
   while (!glfwWindowShouldClose(window)) {
@@ -133,7 +135,6 @@ int main() {
     glBindVertexArray(VAO);
     glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, VBO);
 
-    float N_sides = 5.0f;
     float R_factor = 1 / (1 + (sin(PI/N_sides)/(2 * sin((PI/N_sides)*(floor((float)N_sides/4))))));
 
     glUniform1f(N_loc, N_sides);
@@ -147,6 +148,8 @@ int main() {
 
     glfwSwapBuffers(window);
     glfwPollEvents();
+
+    N_sides += 0.1f;
   }
 
   glDeleteShader(vertexShader);
