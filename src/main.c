@@ -95,7 +95,7 @@ int main() {
   glUseProgram(shaderProgram);
 
   // setup
-  glViewport(0, 0, 800, 800);
+  glViewport(0, 0, 400, 400);
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glEnable(GL_PROGRAM_POINT_SIZE);
 

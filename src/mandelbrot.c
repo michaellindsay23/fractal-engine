@@ -95,7 +95,7 @@ int main() {
   glUseProgram(shaderProgram);
 
   // setup
-  glViewport(0, 0, 1600, 1600);
+  glViewport(0, 0, 400, 400);
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glEnable(GL_PROGRAM_POINT_SIZE);
 
@@ -128,8 +128,6 @@ int main() {
 
   float N_sides = 4.0f;
 
-  bool pause = false;
-
   // main loop
   int readIdx = 0;
   while (!glfwWindowShouldClose(window)) {
@@ -154,12 +152,7 @@ int main() {
     glfwSwapBuffers(window);
     glfwPollEvents();
 
-    if (!pause) {
-      N_sides _ = 0.002f;
-      if (N_sides > 7.998f) {
-        pause = true;
-      }
-    }
+    N_sides += 0.002f;
   }
 
   glDeleteShader(vertexShader);
