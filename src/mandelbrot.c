@@ -95,7 +95,7 @@ int main() {
   glUseProgram(shaderProgram);
 
   // setup
-  glViewport(0, 0, 800, 800);
+  glViewport(0, 0, 1600, 1600);
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glEnable(GL_PROGRAM_POINT_SIZE);
 
@@ -155,7 +155,7 @@ int main() {
     glfwPollEvents();
 
     if (!pause) {
-      N_sides += 0.002f;
+      N_sides _ = 0.002f;
       if (N_sides > 7.998f) {
         pause = true;
       }
