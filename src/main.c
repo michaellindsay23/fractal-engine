@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
 
 const char* vertexShaderSource =
 "#version 330 core\n"
@@ -127,6 +128,8 @@ int main() {
 
   float N_sides = 4.0f;
 
+  bool reverse = false;
+
   // main loop
   int readIdx = 0;
   while (!glfwWindowShouldClose(window)) {
@@ -149,7 +152,17 @@ int main() {
     glfwSwapBuffers(window);
     glfwPollEvents();
 
-    N_sides += 0.001f;
+    if (reverse) {
+      N_sides -= 0.002f;
+      if (N_sides < 4.0f) {
+        reverse = false;
+      }
+    } else {
+      N_sides += 0.002f;
+      if (N_sides > 7.998f) {
+        reverse = true;
+      }
+    }
   }
 
   glDeleteShader(vertexShader);
