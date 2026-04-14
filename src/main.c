@@ -36,7 +36,7 @@ const char *fragmentShaderSource =
     "out vec4 FragColor;\n"
     //"in vec3 color;\n"
     "void main() {\n"
-    "   FragColor = vec4(110.0f/255.0f, 138.0f/255.0f, 180.0f/255.0f, 1.0f);\n"
+    "   FragColor = vec4(255.0f/255.0f, 38.0f/255.0f, 80.0f/255.0f, 1.0f);\n"
     "}\n\0";
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
