@@ -36,7 +36,7 @@ const char *fragmentShaderSource =
     "out vec4 FragColor;\n"
     //"in vec3 color;\n"
     "void main() {\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "   FragColor = vec4(110.0f/255.0f, 138.0f/255.0f, 180.0f/255.0f, 1.0f);\n"
     "}\n\0";
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
@@ -161,8 +161,8 @@ int main() {
     glfwPollEvents();
 
     if (!pause) {
-      N_sides += 0.002f;
-      if (N_sides > 7.998f) {
+      N_sides += 0.005f;
+      if (N_sides > 7.99f) {
         pause = true;
       }
     }
