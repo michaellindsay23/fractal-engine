@@ -10,7 +10,6 @@ const char *vertexShaderSource =
     "layout(location = 0) in vec2 pos;\n"
     "uniform float N;\n"
     "uniform float R;\n"
-    "uniform int window_width;\n"
     "\n"
     "const float PI = 3.14159265359;"
     "\n"
@@ -27,9 +26,9 @@ const char *vertexShaderSource =
     "   vec2 vertexPos = vec2(cos(angle), sin(angle)) * 0.8;\n"
     "\n"
     "   outPos = pos + ((vertexPos - pos) * R);\n"
-    "   gl_Position = vec4((10.0f/16.0f) * outPos.x, outPos.y, 0.0, 1.0);\n"
+    "   gl_Position = vec4(outPos, 0.0, 1.0);\n"
     "   gl_PointSize = 1.0;\n"
-    "}\n\0";
+    " }\n\0";
 
 const char *fragmentShaderSource =
     "#version 330 core\n"
@@ -124,9 +123,8 @@ int main() {
   glBindBuffer(GL_ARRAY_BUFFER, 0);
 
   // Uniforms
-  int N_loc = glGetUniformLocation(shaderProgram, "N");
-  int R_loc = glGetUniformLocation(shaderProgram, "R");
-  int window_width_loc = glGetUniformLocation(shaderProgram, "window_width");
+  float N_loc = glGetUniformLocation(shaderProgram, "N");
+  float R_loc = glGetUniformLocation(shaderProgram, "R");
 
   float N_sides = 4.0f;
 
@@ -140,16 +138,12 @@ int main() {
     glBindVertexArray(VAO);
     glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, VBO);
 
-    int wid, hei;
-    glfwGetFramebufferSize(window, &wid, &hei);
-
     float R_factor =
         1 / (1 + (sin(PI / N_sides) /
                   (2 * sin((PI / N_sides) * (floor((float)N_sides / 4))))));
 
     glUniform1f(N_loc, N_sides);
     glUniform1f(R_loc, R_factor);
-    glUniform1i(window_width_loc, wid);
 
     glUseProgram(shaderProgram);
 
